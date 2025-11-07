@@ -3,7 +3,7 @@ import { InvoiceData, ChatbotDataContext, RenewableData, RenewableCategory, Dail
 
 // IMPORTANT: This key is for demonstration purposes. 
 // In a real application, it must be secured and managed via environment variables.
-const API_KEY = process.env.API_KEY;
+const API_KEY = "";
 
 if (!API_KEY) {
     console.warn("API_KEY environment variable not set. Gemini API calls will fail.");
@@ -39,7 +39,7 @@ export async function scanInvoiceWithGemini(base64Image: string, mimeType: strin
         };
 
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-1.5-flash',
             contents: { parts: [imagePart, textPart] },
             config: {
                 responseMimeType: "application/json",
@@ -99,7 +99,7 @@ export async function scanRenewableWithGemini(base64Image: string, mimeType: str
         };
 
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-1.5-flash',
             contents: { parts: [imagePart, textPart] },
             config: {
                 responseMimeType: "application/json",
@@ -165,7 +165,7 @@ Historical Data: ${JSON.stringify(historicalData)}
 Provide your response in a valid JSON object with the following exact structure: { "forecast": [ { "month": "YYYY-MM", "predictedSales": number }, ... ], "analysis": "Your text analysis here." }`;
         
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-1.5-flash',
             contents: prompt,
             config: {
                 responseMimeType: "application/json",
@@ -252,7 +252,7 @@ Generate the briefing now.`;
 
     try {
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-1.5-flash',
             contents: contents,
             config: {
                 systemInstruction: systemInstruction,
@@ -323,7 +323,7 @@ export async function getChatbotResponse(query: string, context: ChatbotDataCont
 
     try {
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-1.5-flash',
             contents: contents,
             config: {
                 systemInstruction: systemInstruction,
@@ -379,7 +379,7 @@ export async function getPurchaseOrderSuggestion(
 
   try {
     const response: GenerateContentResponse = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-1.5-flash',
       contents: contents,
       config: {
         systemInstruction: systemInstruction,
@@ -435,7 +435,7 @@ export async function getFormulaSuggestion(context: FormulaSuggestionContext): P
 
     try {
         const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-1.5-flash',
             contents: contents,
             config: {
                 systemInstruction: systemInstruction,
@@ -497,7 +497,7 @@ export async function getNewProductIdea(context: NewProductIdeaContext): Promise
 
     try {
         const response = await ai.models.generateContent({
-            model: 'gemini-2.5-pro', // Using a more creative model for this task
+            model: 'gemini-1.5-pro', // Using a more creative model for this task
             contents: contents,
             config: {
                 systemInstruction: systemInstruction,
